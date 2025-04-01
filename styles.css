@@ -5,6 +5,14 @@
     font-family: 'Poppins', sans-serif;
 }
 
+/* Ensure no horizontal scroll on the entire page */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    width: 100%;
+}
+
 body {
     background: #1a1a1a;
     color: #fff;
@@ -18,6 +26,7 @@ body {
     align-items: center;
     padding: 15px 20px;
     background: #000;
+    width: 100%;
 }
 
 .logo h1 {
@@ -70,32 +79,42 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 30px 20px;
-    min-height: 60vh;
+    min-height: 100vh;
+    width: 100%;
+    padding: 0 80px;
+    background: #1a1a1a;
+    position: relative;
 }
 
 .hero-content {
     max-width: 50%;
+    z-index: 1;
 }
 
 .hero-content h1 {
-    font-size: 2.5rem;
+    font-size: 60px;
     font-weight: 700;
     line-height: 1.2;
+    color: #fff;
 }
 
 .hero-content p {
-    margin: 15px 0;
+    margin: 25px 0;
     color: #ccc;
-    font-size: 1rem;
+    font-size: 18px;
 }
 
 .hero-buttons .btn {
-    padding: 8px 16px;
+    padding: 12px 25px;
     text-decoration: none;
-    margin-right: 10px;
+    margin-right: 15px;
     border-radius: 5px;
-    font-size: 0.9rem;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.hero-buttons .btn:hover {
+    transform: scale(1.05);
 }
 
 .btn-primary {
@@ -110,14 +129,27 @@ body {
 }
 
 .hero-image img {
-    max-width: 100%;
+    max-width: 450px;
     border-radius: 10px;
+    object-fit: cover;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 0, 122, 0.1), rgba(0, 255, 204, 0.1));
+    z-index: 0;
 }
 
 /* About Section */
 .about {
     padding: 30px 20px;
     text-align: center;
+    width: 100%;
 }
 
 .about h2 {
@@ -129,6 +161,7 @@ body {
 .services {
     padding: 30px 20px;
     text-align: center;
+    width: 100%;
 }
 
 .services h2 {
@@ -141,6 +174,7 @@ body {
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 15px;
+    width: 100%;
 }
 
 .card {
@@ -160,6 +194,7 @@ body {
 .projects {
     padding: 30px 20px;
     text-align: center;
+    width: 100%;
 }
 
 .projects h2 {
@@ -172,6 +207,7 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     gap: 15px;
+    width: 100%;
 }
 
 .project-item {
@@ -194,6 +230,7 @@ body {
 .contact {
     padding: 30px 20px;
     text-align: center;
+    width: 100%;
 }
 
 .contact h2 {
@@ -206,6 +243,7 @@ form {
     flex-direction: column;
     max-width: 500px;
     margin: 0 auto;
+    width: 100%;
 }
 
 form input, form textarea {
@@ -214,6 +252,7 @@ form input, form textarea {
     border: none;
     border-radius: 5px;
     font-size: 0.9rem;
+    width: 100%;
 }
 
 form button {
@@ -232,9 +271,10 @@ footer {
     padding: 15px;
     background: #000;
     font-size: 0.9rem;
+    width: 100%;
 }
 
-/* Responsive Design */
+/* Responsive Design - Keeping Mobile Look Unchanged */
 @media (max-width: 768px) {
     .navbar {
         padding: 15px;
@@ -268,6 +308,7 @@ footer {
         flex-direction: column;
         text-align: center;
         padding: 20px;
+        min-height: 80vh;
     }
 
     .hero-content {
@@ -289,6 +330,11 @@ footer {
 
     .hero-image img {
         margin-top: 20px;
+        max-width: 100%;
+    }
+
+    .hero::before {
+        background: none;
     }
 
     .about h2, .services h2, .projects h2, .contact h2 {
@@ -332,5 +378,19 @@ footer {
 
     form button {
         font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .hero {
+        padding: 0 100px;
+    }
+
+    .hero-content h1 {
+        font-size: 60px;
+    }
+
+    .hero-image img {
+        max-width: 500px;
     }
 }
